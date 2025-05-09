@@ -144,7 +144,7 @@ export default function Home() {
                     <input
                         ref={inputRef}
                         type="text"
-                        className="w-full px-4 py-3 rounded-xl border border-slate-200 text-lg text-center outline-none bg-slate-50/70 shadow-sm focus:border-violet-600 focus:bg-white focus:shadow-md transition"
+                        className="w-full px-4 py-3 rounded-xl border border-slate-200 text-lg text-center outline-none bg-slate-50/70 shadow-sm focus:border-violet-600 focus:bg-white focus:shadow-md transition text-red-900"
                         placeholder="YYYY/MM/DD 또는 YYMMDD"
                         maxLength={10}
                         required
