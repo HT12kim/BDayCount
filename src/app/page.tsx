@@ -1,103 +1,219 @@
-import Image from "next/image";
+'use client';
+
+import React, { useEffect, useRef, useState } from 'react';
+
+const bearSVG = (
+    <svg
+        className="w-16 h-16 sm:w-10 sm:h-10 mb-3 animate-bounce"
+        viewBox="0 0 64 64"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        <ellipse cx="32" cy="36" rx="22" ry="20" fill="#e0e7ef" />
+        <ellipse cx="18" cy="18" rx="7" ry="8" fill="#e0e7ef" />
+        <ellipse cx="46" cy="18" rx="7" ry="8" fill="#e0e7ef" />
+        <ellipse cx="32" cy="38" rx="15" ry="13" fill="#fff" />
+        <ellipse cx="25" cy="38" rx="2.5" ry="2.5" fill="#7c3aed" />
+        <ellipse cx="39" cy="38" rx="2.5" ry="2.5" fill="#7c3aed" />
+        <ellipse cx="32" cy="45" rx="5" ry="2.2" fill="#b39ddb" />
+        <path d="M29 42 Q32 44 35 42" stroke="#7c3aed" strokeWidth="1.5" fill="none" />
+    </svg>
+);
+
+const instaSVG = (
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="28" height="28" rx="8" fill="#fff" />
+        <rect x="4" y="4" width="20" height="20" rx="6" fill="#fff" stroke="#e0e7ef" strokeWidth="1.5" />
+        <rect x="8.5" y="8.5" width="11" height="11" rx="5.5" fill="#fff" stroke="#b39ddb" strokeWidth="1.5" />
+        <circle cx="14" cy="14" r="3.5" fill="#b39ddb" />
+        <circle cx="19.2" cy="8.8" r="1.2" fill="#7c3aed" />
+    </svg>
+);
+
+function showToast(msg: string) {
+    const toast = document.createElement('div');
+    toast.textContent = msg;
+    toast.style.position = 'fixed';
+    toast.style.bottom = '32px';
+    toast.style.left = '50%';
+    toast.style.transform = 'translateX(-50%)';
+    toast.style.background = '#7c3aed';
+    toast.style.color = '#fff';
+    toast.style.padding = '0.6em 1.2em';
+    toast.style.borderRadius = '1em';
+    toast.style.fontWeight = 'bold';
+    toast.style.fontSize = '1em';
+    toast.style.boxShadow = '0 2px 8px 0 #b39ddb55';
+    toast.style.zIndex = '9999';
+    document.body.appendChild(toast);
+    setTimeout(() => {
+        toast.remove();
+    }, 1200);
+}
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    const [birth, setBirth] = useState('');
+    const [message, setMessage] = useState<React.ReactNode>(null);
+    const inputRef = useRef<HTMLInputElement>(null);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    useEffect(() => {
+        const saved = localStorage.getItem('savedBirth');
+        if (saved) setBirth(saved);
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem('savedBirth', birth);
+    }, [birth]);
+
+    function handleInput(e: React.ChangeEvent<HTMLInputElement>) {
+        setBirth(e.target.value);
+    }
+
+    function handleSubmit(e: React.FormEvent) {
+        e.preventDefault();
+        let value = birth.trim();
+        let formatted = '';
+        if (/^\d{6}$/.test(value)) {
+            const yy = parseInt(value.slice(0, 2), 10);
+            const mm = value.slice(2, 4);
+            const dd = value.slice(4, 6);
+            const year = yy > 50 ? 1900 + yy : 2000 + yy;
+            formatted = `${year}/${mm}/${dd}`;
+            value = formatted;
+        }
+        const regex = /^\d{4}\/\d{2}\/\d{2}$/;
+        if (!regex.test(value)) {
+            setMessage(<div className="error-msg">YYYY/MM/DD 형식 또는 YYMMDD 6자리로 입력해주세요.</div>);
+            return;
+        }
+        const [year, month, day] = value.split('/').map(Number);
+        const birthDate = new Date(year, month - 1, day);
+        if (birthDate.getFullYear() !== year || birthDate.getMonth() !== month - 1 || birthDate.getDate() !== day) {
+            setMessage(<div className="error-msg">존재하지 않는 날짜입니다.</div>);
+            return;
+        }
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        birthDate.setHours(0, 0, 0, 0);
+        const diffTime = today.getTime() - birthDate.getTime();
+        if (diffTime < 0) {
+            setMessage(<div className="error-msg">미래의 날짜는 입력할 수 없습니다.</div>);
+            return;
+        }
+        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+        setMessage(
+            <div className="result-msg">
+                📅 <span className="text-base">{value}</span>
+                <br />
+                태어난 날짜로부터{' '}
+                <span className="font-extrabold text-xl text-violet-700" id="days">
+                    {diffDays}
+                </span>
+                일이 지났어요!
+            </div>
+        );
+        // Copy to clipboard
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(diffDays.toString()).then(() => showToast('복사됨!'));
+        } else {
+            // fallback
+            const textarea = document.createElement('textarea');
+            textarea.value = diffDays.toString();
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                showToast('복사됨!');
+            } catch {}
+            document.body.removeChild(textarea);
+        }
+    }
+
+    return (
+        <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-slate-50 to-indigo-100 py-8 px-4 relative font-sans">
+            <div className="container mx-auto max-w-xs w-full bg-white/95 rounded-3xl shadow-xl border border-slate-200 flex flex-col items-center p-8 sm:p-4">
+                <div className="character flex justify-center mb-2">{bearSVG}</div>
+                <h1 className="cute-title text-center text-xl font-bold text-slate-800 mb-6">
+                    우리 아이, 태어난 날로부터 며칠?
+                </h1>
+                <form
+                    className="w-full flex flex-col gap-3 items-center mb-2"
+                    autoComplete="off"
+                    onSubmit={handleSubmit}
+                >
+                    <input
+                        ref={inputRef}
+                        type="text"
+                        className="w-full px-4 py-3 rounded-xl border border-slate-200 text-lg text-center outline-none bg-slate-50/70 shadow-sm focus:border-violet-600 focus:bg-white focus:shadow-md transition"
+                        placeholder="YYYY/MM/DD 또는 YYMMDD"
+                        maxLength={10}
+                        required
+                        value={birth}
+                        onChange={handleInput}
+                    />
+                    <button
+                        type="submit"
+                        className="bg-violet-100 text-violet-700 font-semibold rounded-xl px-8 py-3 text-lg shadow hover:bg-violet-200 transition mt-1"
+                    >
+                        확인
+                    </button>
+                </form>
+                <div className="w-full min-h-[2.5em]">{message}</div>
+            </div>
+            <footer className="footer w-full flex justify-center items-center fixed left-0 bottom-0 z-10 bg-none pointer-events-none">
+                <a
+                    href="https://instagram.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="insta-link flex items-center gap-2 text-violet-700 font-semibold text-base bg-white/95 rounded-full shadow px-4 py-2 mt-4 pointer-events-auto hover:bg-slate-50 transition"
+                    aria-label="Instagram"
+                >
+                    {instaSVG}
+                    <span className="insta-text">Instagram</span>
+                </a>
+            </footer>
+            <style jsx global>{`
+                .cute-title {
+                    font-family: 'Inter', 'Gowun Dodum', sans-serif;
+                    letter-spacing: -0.01em;
+                }
+                .result-msg {
+                    margin-top: 1.2em;
+                    color: #7c3aed;
+                    font-size: 1.22em;
+                    font-weight: 600;
+                    text-align: center;
+                    background: #f5f7fa;
+                    border-radius: 1.2em;
+                    padding: 1.1em 1.4em;
+                    box-shadow: 0 1px 8px 0 #b39ddb22;
+                    letter-spacing: -0.01em;
+                }
+                .error-msg {
+                    margin-top: 1em;
+                    color: #d32f2f;
+                    font-size: 1.12em;
+                    font-weight: 600;
+                    text-align: center;
+                    background: #ffebee;
+                    border-radius: 1.2em;
+                    padding: 1em 1.2em;
+                    box-shadow: 0 1px 8px 0 #d32f2f22;
+                }
+                @media (max-width: 500px) {
+                    .container {
+                        padding: 1.1rem 0.9rem 1.1rem 0.9rem !important;
+                        max-width: 98vw !important;
+                        border-radius: 1.3rem !important;
+                        margin-top: 0.7rem !important;
+                        margin-bottom: 0.7rem !important;
+                    }
+                    .cute-title {
+                        font-size: 1.13rem !important;
+                        margin-bottom: 1.1rem !important;
+                    }
+                }
+            `}</style>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+    );
 }
