@@ -39,6 +39,24 @@ export default function RootLayout({
             gtag('config', 'G-6LY724VDX3');
           `}
                 </Script>
+                <meta
+                    name="description"
+                    content="우리 아이, 태어난 날로부터 며칠? 생일 일수 계산기 | Birthday Days Counter"
+                />
+                <meta
+                    name="keywords"
+                    content="생일, 날짜 계산, 며칠 지남, 아이 생일, 디데이, D-Day, birthday, days counter, date calculator, 아기, 육아, 출생일, 기념일, anniversary, 몇일, 몇일째, 며칠, 며칠째, 생일계산기, 디데이계산기, baby, child, parenting, birth date, date difference, 카운터, 웹앱"
+                />
+                <meta name="author" content="bdaycnt" />
+                <meta property="og:title" content="우리 아이, 태어난 날로부터 며칠?" />
+                <meta
+                    property="og:description"
+                    content="생일로부터 며칠이 지났는지 바로 확인! 간편한 생일 일수 계산기 웹앱"
+                />
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content="https://bdaycnt.netlify.app/" />
+                <meta property="og:image" content="/favicon.ico" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             </head>
             <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</body>
         </html>
