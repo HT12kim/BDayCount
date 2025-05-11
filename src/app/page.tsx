@@ -131,6 +131,8 @@ export default function Home() {
 
     return (
         <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-slate-50 to-indigo-100 py-8 px-4 relative font-sans">
+            <h1 className="text-2xl font-bold text-slate-900 mb-2">생일 일수 계산기</h1>
+            <h2 className="sr-only">Birthday Days Counter - 우리 아이, 태어난 날로부터 며칠?</h2>
             <div className="container mx-auto max-w-xs w-full bg-white/95 rounded-3xl shadow-xl border border-slate-200 flex flex-col items-center p-8 sm:p-4">
                 <div className="character flex justify-center mb-2">{bearSVG}</div>
                 <h1 className="cute-title text-center text-xl font-bold text-slate-800 mb-6">
