@@ -21,12 +21,31 @@ const bearSVG = (
 );
 
 const instaSVG = (
-    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="28" height="28" rx="8" fill="#fff" />
-        <rect x="4" y="4" width="20" height="20" rx="6" fill="#fff" stroke="#e0e7ef" strokeWidth="1.5" />
-        <rect x="8.5" y="8.5" width="11" height="11" rx="5.5" fill="#fff" stroke="#b39ddb" strokeWidth="1.5" />
-        <circle cx="14" cy="14" r="3.5" fill="#b39ddb" />
-        <circle cx="19.2" cy="8.8" r="1.2" fill="#7c3aed" />
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="40"
+        height="40"
+        viewBox="0 0 448 448"
+        aria-hidden="true"
+        focusable="false"
+        className=""
+    >
+        <defs>
+            <radialGradient id="ig-gradient" cx="30%" cy="107%" r="150%" fx="30%" fy="107%">
+                <stop offset="0%" stopColor="#fdf497" />
+                <stop offset="5%" stopColor="#fdf497" />
+                <stop offset="45%" stopColor="#fd5949" />
+                <stop offset="60%" stopColor="#d6249f" />
+                <stop offset="90%" stopColor="#285AEB" />
+            </radialGradient>
+        </defs>
+        <rect x="24" y="24" width="400" height="400" rx="90" fill="url(#ig-gradient)" />
+        <path
+            d="M224 144c-44.1 0-80 35.9-80 80s35.9 80 80 80 80-35.9 80-80-35.9-80-80-80zm0 132c-28.7 0-52-23.3-52-52s23.3-52 52-52 52 23.3 52 52-23.3 52-52 52zm85-136c0 9.4-7.6 17-17 17s-17-7.6-17-17 7.6-17 17-17 17 7.6 17 17zm48 17.1c-1.1-23.6-6.4-44.5-23.4-61.5S327.6 49.1 304 48c-23.6-1.1-94.4-1.1-118 0-23.6 1.1-44.5 6.4-61.5 23.4S49.1 120.4 48 144c-1.1 23.6-1.1 94.4 0 118 1.1 23.6 6.4 44.5 23.4 61.5s37.9 22.3 61.5 23.4c23.6 1.1 94.4 1.1 118 0 23.6-1.1 44.5-6.4 61.5-23.4s22.3-37.9 23.4-61.5c1.1-23.6 1.1-94.4 0-118zm-48.5 143.5c-7.8 19.6-22.9 34.7-42.5 42.5-29.4 11.7-99.2 9-132.1 0-19.6-7.8-34.7-22.9-42.5-42.5-11.7-29.4-9-99.2 0-132.1 7.8-19.6 22.9-34.7 42.5-42.5 29.4-11.7 99.2-9 132.1 0 19.6 7.8 34.7 22.9 42.5 42.5 11.7 29.4 9 99.2 0 132.1z"
+            fill="#fff"
+        />
+        <circle cx="224" cy="224" r="52" fill="none" stroke="#fff" strokeWidth="16" />
+        <circle cx="309" cy="139" r="17" fill="#fff" />
     </svg>
 );
 
@@ -167,11 +186,11 @@ export default function Home() {
                     href="https://instagram.com/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="insta-link flex items-center gap-2 text-violet-700 font-semibold text-base bg-white/95 rounded-full shadow px-4 py-2 mt-4 pointer-events-auto hover:bg-slate-50 transition"
+                    className="insta-link flex items-center gap-3 text-pink-600 font-bold text-lg bg-white/95 rounded-full shadow-lg px-6 py-3 mt-4 pointer-events-auto hover:bg-pink-50 hover:shadow-xl transition border-2 border-pink-200 focus:outline-none focus:ring-2 focus:ring-pink-400"
                     aria-label="Instagram"
                 >
                     {instaSVG}
-                    <span className="insta-text">Instagram</span>
+                    <span className="insta-text font-bold text-pink-700 text-lg">Instagram</span>
                 </a>
             </footer>
             <style jsx global>{`

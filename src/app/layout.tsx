@@ -42,7 +42,7 @@ export default function RootLayout({
                 <title>생일 일수 계산기 | Birthday Days Counter - 우리 아이, 태어난 날로부터 며칠?</title>
                 <meta
                     name="description"
-                    content="생일로부터 며칠이 지났는지 바로 확인! 우리 아이, 가족, 친구의 생일 D-Day, 디데이, 날짜 계산기. 모바일 웹앱 지원."
+                    content="생일로부터 며칠이 지났는지 바로 확인! 우리 아이, 가족, 친구의 생일 D-Day, 디데이, 날짜 계산기. 살아온 일수를 계산해서 클립보드에 복사되므로 인스타그램 등에서 바로 붙여넣어 사용해보세요. 모바일 웹앱 지원."
                 />
                 <meta
                     name="keywords"
@@ -52,7 +52,7 @@ export default function RootLayout({
                 <meta property="og:title" content="우리 아이, 태어난 날로부터 며칠?" />
                 <meta
                     property="og:description"
-                    content="생일로부터 며칠이 지났는지 바로 확인! 간편한 생일 일수 계산기 웹앱"
+                    content="살아온 일수를 계산해서 클립보드에 복사되므로 인스타그램 등에서 바로 붙여넣어 사용해보세요"
                 />
                 <meta property="og:type" content="website" />
                 <meta property="og:url" content="https://bdaycnt.netlify.app/" />
