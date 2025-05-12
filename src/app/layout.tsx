@@ -59,6 +59,7 @@ export default function RootLayout({
                 <meta property="og:url" content="https://bdaycnt.netlify.app/" />
                 <meta property="og:image" content="/favicon.ico" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <meta name="google-adsense-account" content="ca-pub-7198497161095707" />
                 <Script id="ld-json" type="application/ld+json" strategy="afterInteractive">
                     {`
                       {
