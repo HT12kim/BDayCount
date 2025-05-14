@@ -182,14 +182,20 @@ export default function Home() {
                 </form>
                 <div className="w-full min-h-[2.5em]">{message}</div>
             </div>
-            <ins
-                className="kakao_ad_area"
-                style={{ display: 'none' }}
-                data-ad-unit="DAN-4kRmUTKnT8K7zbSH"
-                data-ad-width="320"
-                data-ad-height="100"
-            ></ins>
-            <Script src="//t1.daumcdn.net/kas/static/ba.min.js" strategy="lazyOnload" async />{' '}
+
+            {/* 카카오애드핏 시작 */}
+            <div className="mt-12">
+                <ins
+                    className="kakao_ad_area"
+                    style={{ display: 'none' }}
+                    data-ad-unit="DAN-4kRmUTKnT8K7zbSH"
+                    data-ad-width="320"
+                    data-ad-height="100"
+                ></ins>
+            </div>
+            <Script src="//t1.daumcdn.net/kas/static/ba.min.js" strategy="lazyOnload" async />
+            {/* 카카오애드핏 끝 */}
+
             <footer className="footer w-full flex justify-center items-center fixed left-0 bottom-0 z-10 bg-none pointer-events-none">
                 <a
                     href="https://instagram.com/"
