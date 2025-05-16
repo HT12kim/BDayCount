@@ -134,11 +134,11 @@ export default function Home() {
         );
         // Copy to clipboard
         if (navigator.clipboard) {
-            navigator.clipboard.writeText(diffDays.toString()).then(() => showToast('복사됨!'));
+            navigator.clipboard.writeText(`${diffDays}일`).then(() => showToast('복사됨!'));
         } else {
             // fallback
             const textarea = document.createElement('textarea');
-            textarea.value = diffDays.toString();
+            textarea.value = `${diffDays}일`;
             document.body.appendChild(textarea);
             textarea.select();
             try {
