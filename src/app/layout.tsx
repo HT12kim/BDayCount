@@ -14,9 +14,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-    title: '생일 일수 계산기 | 우리 아기, 태어난 지 며칠?',
+    title: '아기 생일 디데이 계산기 | 생후 며칠? 인스타그램용 생일 일수 계산기',
     description:
-        '신생아 부모를 위한 필수 도구! 아이가 태어난 날로부터 며칠 지났는지 바로 확인해보세요. 생일 디데이 계산, 살아온 일수 복사 기능, 인스타그램에서 바로 붙여넣기 가능! 모바일 웹앱 지원.',
+        '우리 아기 생일로부터 며칠 지났는지 자동 계산! 인스타그램 업로드용 생후 일수 복사 기능 지원. 초보 부모를 위한 육아 필수 웹앱.',
 };
 
 export default function RootLayout({
@@ -33,52 +33,39 @@ export default function RootLayout({
                 <link rel="icon" type="image/png" sizes="16x16" href="https://bdaycnt.netlify.app/favicon-16x16.png" />
                 <link rel="shortcut icon" href="https://bdaycnt.netlify.app/favicon.ico" type="image/x-icon" />
 
-                {/* Google Analytics */}
-                <Script
-                    src="https://www.googletagmanager.com/gtag/js?id=G-6LY724VDX3"
-                    strategy="afterInteractive"
-                    async
-                />
-                <Script id="gtag-init" strategy="afterInteractive">
-                    {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-6LY724VDX3');
-          `}
-                </Script>
-
-                {/* SEO & SNS Metadata */}
-                <title>생일 일수 계산기 | Birthday Days Counter - 우리 아기, 태어난 지 며칠?</title>
+                {/* SEO Meta Tags */}
+                <title>아기 생일 디데이 계산기 | 생후 며칠? 인스타그램용 생일 일수 계산기</title>
                 <meta
                     name="description"
-                    content="신생아 부모를 위한 필수 도구! 아이가 태어난 날로부터 며칠 지났는지 바로 확인해보세요. 생일 디데이 계산, 살아온 일수 복사 기능, 인스타그램에서 바로 붙여넣기 가능!"
+                    content="신생아부터 생후 100일, 200일, 1년까지! 아기 생일 일수 계산기. 인스타그램 업로드용 텍스트 복사 기능 제공. 초보 엄마 아빠의 육아 필수템!"
                 />
                 <meta
                     name="keywords"
-                    content="생일, 날짜 계산, 며칠 지남, 아기 생일, 디데이, D-Day, birthday, days counter, date calculator, 육아, 출생일, 기념일, anniversary, 생일계산기, baby, parenting, 몇일째, 생후, 초보 부모, 신생아, 임산부, 100일, 200일, 1년, 카운터, 아기 디데이"
+                    content="아기 디데이, 생일 일수 계산기, 생후 며칠, 아기 생일, 신생아 육아, 100일 디데이, 200일, 생일 계산기, 인스타그램 육아, D-Day 계산, 출산 후 일수, 아기 나이 계산기, 생후 계산기, 육아템, 아기 날짜 계산기"
                 />
                 <meta name="author" content="bdaycnt" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <meta name="robots" content="index, follow" />
 
-                {/* Open Graph (Facebook, Kakao, Discord 등) */}
+                {/* Open Graph */}
                 <meta property="og:type" content="website" />
-                <meta property="og:title" content="생일 일수 계산기 | 우리 아기, 태어난 지 며칠?" />
+                <meta property="og:title" content="아기 생일 디데이 계산기 | 생후 며칠?" />
                 <meta
                     property="og:description"
-                    content="신생아 부모를 위한 필수 도구! 아기가 태어난 지 며칠인지 바로 확인하세요. D-Day 자동 계산 웹앱"
+                    content="우리 아기 생일로부터 며칠 지났는지 확인하고 인스타그램에 바로 복사! 초보 부모를 위한 육아 도우미 웹앱"
                 />
                 <meta property="og:url" content="https://bdaycnt.netlify.app/" />
                 <meta property="og:image" content="https://bdaycnt.netlify.app/og-image.png" />
                 <meta property="og:image:width" content="1200" />
                 <meta property="og:image:height" content="630" />
+                <meta property="og:locale" content="ko_KR" />
 
                 {/* Twitter Card */}
                 <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content="우리 아기 생일로부터 며칠? | 생일 일수 계산기" />
+                <meta name="twitter:title" content="아기 생일 디데이 계산기 | 생후 며칠?" />
                 <meta
                     name="twitter:description"
-                    content="아기가 태어난 지 며칠 지났는지 바로 계산해보세요! 초보 부모를 위한 필수 도구"
+                    content="신생아부터 생후 100일, 200일, 365일까지! 생일 디데이 자동 계산. 인스타용 복사 기능 지원"
                 />
                 <meta name="twitter:image" content="https://bdaycnt.netlify.app/og-image.png" />
 
@@ -90,21 +77,44 @@ export default function RootLayout({
                     crossOrigin="anonymous"
                 />
 
-                {/* JSON-LD Structured Data */}
+                {/* Google Analytics */}
+                <Script
+                    src="https://www.googletagmanager.com/gtag/js?id=G-6LY724VDX3"
+                    strategy="afterInteractive"
+                    async
+                />
+                <Script id="gtag-init" strategy="afterInteractive">
+                    {`
+                      window.dataLayer = window.dataLayer || [];
+                      function gtag(){dataLayer.push(arguments);}
+                      gtag('js', new Date());
+                      gtag('config', 'G-6LY724VDX3');
+                    `}
+                </Script>
+
+                {/* Structured Data with Rich Keywords */}
                 <Script id="ld-json" type="application/ld+json" strategy="afterInteractive">
                     {`
-            {
-              "@context": "https://schema.org",
-              "@type": "WebApplication",
-              "name": "생일 일수 계산기 | Birthday Days Counter",
-              "url": "https://bdaycnt.netlify.app/",
-              "description": "우리 아기, 태어난 지 며칠? 신생아 부모를 위한 생일 디데이 계산기",
-              "applicationCategory": "CalculatorApplication",
-              "operatingSystem": "All",
-              "inLanguage": "ko",
-              "keywords": "생일, 날짜 계산, 육아, 출생일, D-Day, 아기 생일, baby, parenting, 몇일째, 신생아"
-            }
-          `}
+                    {
+                      "@context": "https://schema.org",
+                      "@type": "WebApplication",
+                      "name": "아기 생일 디데이 계산기",
+                      "url": "https://bdaycnt.netlify.app/",
+                      "description": "신생아부터 생후 100일, 200일, 1년까지 자동 계산! 인스타그램 공유용 생후 일수 복사 기능 포함",
+                      "applicationCategory": "LifestyleApplication",
+                      "operatingSystem": "All",
+                      "inLanguage": "ko",
+                      "keywords": [
+                        "아기 디데이",
+                        "육아 디데이 계산기",
+                        "생후 일수 계산",
+                        "초보 부모 앱",
+                        "인스타그램 육아 콘텐츠",
+                        "출산일 계산",
+                        "아기 생일 D-Day"
+                      ]
+                    }
+                    `}
                 </Script>
             </head>
             <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</body>
