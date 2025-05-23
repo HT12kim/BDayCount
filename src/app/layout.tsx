@@ -162,19 +162,19 @@ export default function RootLayout({
                 />
 
                 {/* Google Analytics (gtag.js) */}
+                <Script src="https://www.googletagmanager.com/gtag/js?id=G-6LY724VDX3" strategy="afterInteractive" />
                 <Script
-                    src="https://www.googletagmanager.com/gtag/js?id=G-6LY724VDX3"
-                    strategy="afterInteractive" // 페이지가 상호작용 가능해진 후 로드
-                    async // 비동기 로드
+                    id="gtag-init"
+                    strategy="afterInteractive"
+                    dangerouslySetInnerHTML={{
+                        __html: `
+                          window.dataLayer = window.dataLayer || [];
+                          function gtag(){dataLayer.push(arguments);}
+                          gtag('js', new Date());
+                          gtag('config', 'G-6LY724VDX3');
+                        `,
+                    }}
                 />
-                <Script id="gtag-init" strategy="afterInteractive">
-                    {`
-                      window.dataLayer = window.dataLayer || [];
-                      function gtag(){dataLayer.push(arguments);}
-                      gtag('js', new Date());
-                      gtag('config', 'G-6LY724VDX3');
-                    `}
-                </Script>
 
                 {/* JSON-LD 구조화된 데이터 스크립트 */}
                 <Script
