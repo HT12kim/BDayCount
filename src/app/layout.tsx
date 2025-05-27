@@ -153,6 +153,11 @@ export default function RootLayout({
                   (예: title, description, keywords, author, viewport, robots, favicon links, OG/Twitter tags)
                 */}
 
+                <meta
+                    name="keywords"
+                    content="아기 디데이, 생일 일수 계산기, 생후 며칠, 아기 생일, 신생아 육아, 100일 디데이, 200일, 생일 계산기, 인스타그램 육아, D-Day 계산, 출산 후 일수, 아기 나이 계산기, 생후 계산기, 육아템, 아기 날짜 계산기, 아기 개월수 계산기, 육아 필수 앱, 육아 인스타그램 콘텐츠, 신생아 일수 계산, 백일 디데이, 육아 시작일, 생후 몇 개월, 육아 공유"
+                />
+
                 {/* Google AdSense 스크립트 */}
                 <Script
                     async // AdSense 스크립트는 비동기 로드가 권장됨

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://bdaycnt.netlify.app/sitemap.xml
