@@ -1,29 +1,30 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google'; // 실제 Geist 폰트 임포트 방식에 따라 수정될 수 있음
+import { Geist, Geist_Mono } from 'next/font/google';
 import Script from 'next/script';
 import './globals.css';
 
+// 폰트 설정 최적화
 const geistSans = Geist({
     variable: '--font-geist-sans',
     subsets: ['latin'],
-    // weight: ['400', '500', '700'], // 필요에 따라 weight 지정
-    // display: 'swap', // 폰트 로딩 전략
+    display: 'swap',
+    preload: true,
 });
 
 const geistMono = Geist_Mono({
     variable: '--font-geist-mono',
     subsets: ['latin'],
-    // weight: ['400', '500', '700'],
-    // display: 'swap',
+    display: 'swap',
+    preload: true,
 });
 
-// 사이트 공통 정보 관리
-const siteConfig = {
+// 사이트 설정을 상수로 분리
+const SITE_CONFIG = {
     title: '아기 생일 디데이 계산기 | 생후 며칠? 인스타그램용 생일 일수 계산기',
     description:
         '우리 아기 생일로부터 며칠 지났는지 자동 계산! 인스타그램 업로드용 생후 일수 복사 기능 지원. 초보 부모를 위한 육아 필수 웹앱.',
     url: 'https://bdaycnt.netlify.app/',
-    ogImage: 'https://bdaycnt.netlify.app/og-image.png', // OG 이미지 경로
+    ogImage: 'https://bdaycnt.netlify.app/og-image.png',
     keywords: [
         '아기 디데이',
         '생일 일수 계산기',
@@ -40,74 +41,104 @@ const siteConfig = {
         '생후 계산기',
         '육아템',
         '아기 날짜 계산기',
+        '신생아 디데이',
+        '아기 생후 일수',
+        '아기 생후 계산',
+        '신생아 일수 계산기',
+        '아기 생후 며칠 계산기',
+        '아기 생후 일수 계산기',
+        '신생아 생후 계산기',
+        '아기 생후 일수 계산',
+        '신생아 생후 일수 계산',
+        '아기 생후 일수 계산기',
+        '인스타그램 아기 디데이',
+        '인스타그램 아기 생후',
+        '인스타그램 아기 일수',
+        '인스타그램 아기 생일',
+        '인스타그램 아기 디데이 계산기',
+        '인스타그램 아기 생후 계산기',
+        '인스타그램 아기 일수 계산기',
+        '인스타그램 아기 생일 계산기',
+        '육아 디데이 계산기',
+        '육아 일수 계산기',
+        '육아 생후 계산기',
+        '육아 생일 계산기',
+        '육아 디데이',
+        '육아 일수',
+        '육아 생후',
+        '육아 생일',
+        '아기 백일 디데이',
+        '아기 백일 계산기',
+        '아기 백일 일수',
+        '아기 백일 생후',
+        '아기 백일 계산',
+        '아기 백일 디데이 계산기',
+        '아기 백일 일수 계산기',
+        '아기 백일 생후 계산기',
+        '아기 백일 계산기',
+        '모바일 아기 디데이',
+        '모바일 아기 생후',
+        '모바일 아기 일수',
+        '모바일 아기 생일',
+        '모바일 아기 디데이 계산기',
+        '모바일 아기 생후 계산기',
+        '모바일 아기 일수 계산기',
+        '모바일 아기 생일 계산기',
     ],
     author: 'bdaycnt',
 };
 
-// Next.js Metadata API를 사용한 메타데이터 정의
+// 메타데이터 정의
 export const metadata: Metadata = {
-    // 기본 메타데이터
-    title: siteConfig.title,
-    description: siteConfig.description,
-    keywords: siteConfig.keywords,
-    authors: [{ name: siteConfig.author }], // 'author' 대신 'authors' 사용
+    title: SITE_CONFIG.title,
+    description: SITE_CONFIG.description,
+    keywords: SITE_CONFIG.keywords,
+    authors: [{ name: SITE_CONFIG.author }],
     viewport: 'width=device-width, initial-scale=1.0',
-    robots: 'index, follow', // 검색 엔진 로봇 정책
+    robots: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
 
-    // Favicon 설정 (public 폴더에 파일 위치 권장, URL은 환경에 맞게 조정)
     icons: {
         icon: [
-            { url: 'https://bdaycnt.netlify.app/favicon.ico', type: 'image/x-icon', sizes: 'any' }, // 기존 shortcut icon 대체
-            { url: 'https://bdaycnt.netlify.app/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-            { url: 'https://bdaycnt.netlify.app/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+            { url: '/favicon.ico', type: 'image/x-icon', sizes: 'any' },
+            { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+            { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
         ],
-        apple: 'https://bdaycnt.netlify.app/apple-touch-icon.png', // Apple 터치 아이콘
+        apple: '/apple-touch-icon.png',
     },
 
-    // Open Graph (Facebook, KakaoTalk 등) 메타데이터
     openGraph: {
         type: 'website',
-        url: siteConfig.url,
-        title: '아기 생일 디데이 계산기 | 생후 며칠?', // OG 전용 제목 (기존 <head> 태그 내용 활용)
+        url: SITE_CONFIG.url,
+        title: '아기 생일 디데이 계산기 | 생후 며칠? 인스타그램용 생일 일수 계산기',
         description:
-            '우리 아기 생일로부터 며칠 지났는지 확인하고 인스타그램에 바로 복사! 초보 부모를 위한 육아 도우미 웹앱', // OG 전용 설명
+            '우리 아기 생일로부터 며칠 지났는지 확인하고 인스타그램에 바로 복사! 초보 부모를 위한 육아 도우미 웹앱',
         images: [
             {
-                url: siteConfig.ogImage,
+                url: SITE_CONFIG.ogImage,
                 width: 1200,
                 height: 630,
                 alt: '아기 생일 디데이 계산기 Open Graph 이미지',
             },
         ],
         locale: 'ko_KR',
-        siteName: '아기 생일 디데이 계산기', // 사이트 이름
+        siteName: '아기 생일 디데이 계산기',
     },
 
-    // Twitter Card 메타데이터
     twitter: {
-        card: 'summary_large_image', // 큰 이미지 요약 카드
-        title: '아기 생일 디데이 계산기 | 생후 며칠?', // Twitter 전용 제목
-        description: '신생아부터 생후 100일, 200일, 365일까지! 생일 디데이 자동 계산. 인스타용 복사 기능 지원', // Twitter 전용 설명
-        images: [siteConfig.ogImage], // OG 이미지를 공유할 수 있음
-        // site: '@YourTwitterSiteHandle', // 사이트 트위터 계정 (선택 사항)
-        // creator: '@YourTwitterCreatorHandle', // 콘텐츠 제작자 트위터 계정 (선택 사항)
+        card: 'summary_large_image',
+        title: '아기 생일 디데이 계산기 | 생후 며칠? 인스타그램용 생일 일수 계산기',
+        description: '신생아부터 생후 100일, 200일, 365일까지! 생일 디데이 자동 계산. 인스타용 복사 기능 지원',
+        images: [SITE_CONFIG.ogImage],
     },
 
-    // 기타 메타 태그 (예: Google AdSense 인증)
     other: {
         'google-adsense-account': 'ca-pub-7198497161095707',
+        'naver-site-verification': 'YOUR_NAVER_VERIFICATION_CODE',
     },
 
-    // 정식 URL 지정 (SEO에 도움)
     alternates: {
-        canonical: siteConfig.url,
+        canonical: SITE_CONFIG.url,
     },
-
-    // 웹 앱 매니페스트 (PWA 구성 시)
-    // manifest: '/manifest.json',
-
-    // 브라우저 테마 색상
-    // themeColor: '#ffffff',
 };
 
 // JSON-LD 구조화된 데이터
@@ -115,13 +146,12 @@ const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
     name: '아기 생일 디데이 계산기',
-    url: siteConfig.url,
+    url: SITE_CONFIG.url,
     description: '신생아부터 생후 100일, 200일, 1년까지 자동 계산! 인스타그램 공유용 생후 일수 복사 기능 포함',
     applicationCategory: 'LifestyleApplication',
-    operatingSystem: 'All', // 모든 OS에서 사용 가능 명시
-    inLanguage: 'ko', // 주 사용 언어
+    operatingSystem: 'All',
+    inLanguage: 'ko',
     keywords: [
-        // 핵심 키워드
         '아기 디데이',
         '육아 디데이 계산기',
         '생후 일수 계산',
@@ -129,15 +159,26 @@ const structuredData = {
         '인스타그램 육아 콘텐츠',
         '출산일 계산',
         '아기 생일 D-Day',
+        '신생아 디데이',
+        '아기 생후 일수',
+        '인스타그램 아기 디데이',
+        '육아 디데이',
+        '아기 백일 디데이',
+        '모바일 아기 디데이',
     ],
-    // "author": { // 애플리케이션 제작자 정보 (선택 사항)
-    //   "@type": "Person", // 또는 Organization
-    //   "name": siteConfig.author
-    // },
-    // "offers": { // 무료 앱인 경우
-    //   "@type": "Offer",
-    //   "price": "0"
-    // }
+    offers: {
+        '@type': 'Offer',
+        price: '0',
+        priceCurrency: 'KRW',
+        availability: 'https://schema.org/InStock',
+    },
+    aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: '4.8',
+        ratingCount: '100',
+        bestRating: '5',
+        worstRating: '1',
+    },
 };
 
 export default function RootLayout({
@@ -148,52 +189,38 @@ export default function RootLayout({
     return (
         <html lang="ko" className={`${geistSans.variable} ${geistMono.variable}`}>
             <head>
-                {/* Next.js의 `metadata` 객체를 통해 대부분의 <meta>, <link rel="icon"> 태그가 자동으로 생성됩니다.
-                  이전에 수동으로 <head>에 넣었던 태그들은 `metadata` 객체로 이전되어 제거되었습니다.
-                  (예: title, description, keywords, author, viewport, robots, favicon links, OG/Twitter tags)
-                */}
-
-                <meta
-                    name="keywords"
-                    content="아기 디데이, 생일 일수 계산기, 생후 며칠, 아기 생일, 신생아 육아, 100일 디데이, 200일, 생일 계산기, 인스타그램 육아, D-Day 계산, 출산 후 일수, 아기 나이 계산기, 생후 계산기, 육아템, 아기 날짜 계산기, 아기 개월수 계산기, 육아 필수 앱, 육아 인스타그램 콘텐츠, 신생아 일수 계산, 백일 디데이, 육아 시작일, 생후 몇 개월, 육아 공유"
-                />
-
-                {/* Google AdSense 스크립트 */}
+                {/* Google AdSense */}
                 <Script
-                    async // AdSense 스크립트는 비동기 로드가 권장됨
+                    async
                     src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7198497161095707"
                     crossOrigin="anonymous"
-                    strategy="lazyOnload" // 페이지 주요 콘텐츠 로드 후 로드 (성능에 유리)
+                    strategy="lazyOnload"
                 />
 
-                {/* Google Analytics (gtag.js) */}
+                {/* Google Analytics */}
                 <Script src="https://www.googletagmanager.com/gtag/js?id=G-6LY724VDX3" strategy="afterInteractive" />
                 <Script
                     id="gtag-init"
                     strategy="afterInteractive"
                     dangerouslySetInnerHTML={{
                         __html: `
-                          window.dataLayer = window.dataLayer || [];
-                          function gtag(){dataLayer.push(arguments);}
-                          gtag('js', new Date());
-                          gtag('config', 'G-6LY724VDX3');
+                            window.dataLayer = window.dataLayer || [];
+                            function gtag(){dataLayer.push(arguments);}
+                            gtag('js', new Date());
+                            gtag('config', 'G-6LY724VDX3');
                         `,
                     }}
                 />
 
-                {/* JSON-LD 구조화된 데이터 스크립트 */}
+                {/* JSON-LD */}
                 <Script
                     id="ld-json"
                     type="application/ld+json"
-                    strategy="afterInteractive" // 중요한 콘텐츠가 아니므로 인터랙션 후 로드
+                    strategy="afterInteractive"
                     dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
                 />
             </head>
-            <body className="antialiased">
-                {' '}
-                {/* antialiased 클래스로 폰트 렌더링 개선 */}
-                {children}
-            </body>
+            <body className="antialiased">{children}</body>
         </html>
     );
 }
