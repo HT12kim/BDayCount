@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import Script from 'next/script';
 import './globals.css';
 
-// 폰트 설정 최적화
+// 폰트 설정
 const geistSans = Geist({
     variable: '--font-geist-sans',
     subsets: ['latin'],
@@ -18,11 +18,11 @@ const geistMono = Geist_Mono({
     preload: true,
 });
 
-// 사이트 설정을 상수로 분리
+// 사이트 설정
 const SITE_CONFIG = {
-    title: '아기 생일 디데이 계산기 | 생후 며칠? 인스타그램용 생일 일수 계산기',
+    title: '아기 생후 며칠? 생일 디데이 자동 계산기 | 인스타그램 복사용 일수 계산',
     description:
-        '우리 아기 생일로부터 며칠 지났는지 자동 계산! 인스타그램 업로드용 생후 일수 복사 기능 지원. 초보 부모를 위한 육아 필수 웹앱.',
+        '우리 아기 태어난 지 며칠? 생후 개월 수, 주수까지 자동 계산해 드려요. 인스타그램 공유도 가능한 초보 부모 필수 육아 도우미 웹앱!',
     url: 'https://bdaycnt.netlify.app/',
     ogImage: 'https://bdaycnt.netlify.app/og-image.png',
     keywords: [
@@ -50,7 +50,6 @@ const SITE_CONFIG = {
         '신생아 생후 계산기',
         '아기 생후 일수 계산',
         '신생아 생후 일수 계산',
-        '아기 생후 일수 계산기',
         '인스타그램 아기 디데이',
         '인스타그램 아기 생후',
         '인스타그램 아기 일수',
@@ -75,7 +74,6 @@ const SITE_CONFIG = {
         '아기 백일 디데이 계산기',
         '아기 백일 일수 계산기',
         '아기 백일 생후 계산기',
-        '아기 백일 계산기',
         '모바일 아기 디데이',
         '모바일 아기 생후',
         '모바일 아기 일수',
@@ -84,11 +82,19 @@ const SITE_CONFIG = {
         '모바일 아기 생후 계산기',
         '모바일 아기 일수 계산기',
         '모바일 아기 생일 계산기',
+        // 유입 검색어 기반 추가
+        '아기 생후 며칠?',
+        '아기 태어난 지 며칠?',
+        '아기 생일 며칠 지났지?',
+        '디데이 계산기 추천',
+        '인스타그램 디데이 계산기',
+        '아기 디데이 어떻게 계산해요?',
+        '백일 디데이 자동 계산기',
+        '우리 아기 태어난 날부터 며칠',
     ],
     author: 'bdaycnt',
 };
 
-// 메타데이터 정의
 export const metadata: Metadata = {
     title: SITE_CONFIG.title,
     description: SITE_CONFIG.description,
@@ -96,7 +102,6 @@ export const metadata: Metadata = {
     authors: [{ name: SITE_CONFIG.author }],
     viewport: 'width=device-width, initial-scale=1.0',
     robots: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
-
     icons: {
         icon: [
             { url: '/favicon.ico', type: 'image/x-icon', sizes: 'any' },
@@ -105,13 +110,11 @@ export const metadata: Metadata = {
         ],
         apple: '/apple-touch-icon.png',
     },
-
     openGraph: {
         type: 'website',
         url: SITE_CONFIG.url,
-        title: '아기 생일 디데이 계산기 | 생후 며칠? 인스타그램용 생일 일수 계산기',
-        description:
-            '우리 아기 생일로부터 며칠 지났는지 확인하고 인스타그램에 바로 복사! 초보 부모를 위한 육아 도우미 웹앱',
+        title: SITE_CONFIG.title,
+        description: SITE_CONFIG.description,
         images: [
             {
                 url: SITE_CONFIG.ogImage,
@@ -123,49 +126,32 @@ export const metadata: Metadata = {
         locale: 'ko_KR',
         siteName: '아기 생일 디데이 계산기',
     },
-
     twitter: {
         card: 'summary_large_image',
-        title: '아기 생일 디데이 계산기 | 생후 며칠? 인스타그램용 생일 일수 계산기',
-        description: '신생아부터 생후 100일, 200일, 365일까지! 생일 디데이 자동 계산. 인스타용 복사 기능 지원',
+        title: SITE_CONFIG.title,
+        description: SITE_CONFIG.description,
         images: [SITE_CONFIG.ogImage],
     },
-
     other: {
         'google-adsense-account': 'ca-pub-7198497161095707',
         'naver-site-verification': 'YOUR_NAVER_VERIFICATION_CODE',
     },
-
     alternates: {
         canonical: SITE_CONFIG.url,
     },
 };
 
-// JSON-LD 구조화된 데이터
+// 구조화 데이터 개선
 const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
     name: '아기 생일 디데이 계산기',
     url: SITE_CONFIG.url,
-    description: '신생아부터 생후 100일, 200일, 1년까지 자동 계산! 인스타그램 공유용 생후 일수 복사 기능 포함',
+    description: SITE_CONFIG.description,
     applicationCategory: 'LifestyleApplication',
     operatingSystem: 'All',
     inLanguage: 'ko',
-    keywords: [
-        '아기 디데이',
-        '육아 디데이 계산기',
-        '생후 일수 계산',
-        '초보 부모 앱',
-        '인스타그램 육아 콘텐츠',
-        '출산일 계산',
-        '아기 생일 D-Day',
-        '신생아 디데이',
-        '아기 생후 일수',
-        '인스타그램 아기 디데이',
-        '육아 디데이',
-        '아기 백일 디데이',
-        '모바일 아기 디데이',
-    ],
+    keywords: SITE_CONFIG.keywords,
     offers: {
         '@type': 'Offer',
         price: '0',
@@ -178,6 +164,11 @@ const structuredData = {
         ratingCount: '100',
         bestRating: '5',
         worstRating: '1',
+    },
+    potentialAction: {
+        '@type': 'SearchAction',
+        target: 'https://bdaycnt.netlify.app/?q={search_term_string}',
+        'query-input': 'required name=search_term_string',
     },
 };
 
@@ -212,7 +203,7 @@ export default function RootLayout({
                     }}
                 />
 
-                {/* JSON-LD */}
+                {/* JSON-LD 구조화 데이터 */}
                 <Script
                     id="ld-json"
                     type="application/ld+json"
