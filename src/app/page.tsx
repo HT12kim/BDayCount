@@ -3,6 +3,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Script from 'next/script';
 
+// Kakao 타입 선언 (window에 Kakao가 있음을 알림)
+declare global {
+    interface Window {
+        Kakao: any;
+    }
+}
+
 const bearSVG = (
     <svg
         className="w-16 h-16 sm:w-10 sm:h-10 mb-3 animate-bounce"
@@ -149,6 +156,36 @@ export default function Home() {
         }
     }
 
+    // 카카오톡 공유 함수
+    function handleKakaoShare() {
+        if (window.Kakao && window.Kakao.isInitialized && window.Kakao.isInitialized()) {
+            window.Kakao.Share.sendDefault({
+                objectType: 'feed',
+                content: {
+                    title: '아기 생후 며칠? 생일 디데이 자동 계산기',
+                    description:
+                        '우리 아기 태어난 지 며칠? 생후 개월 수, 주수까지 자동 계산! 인스타그램 공유도 가능한 초보 부모 필수 육아 도우미 웹앱!',
+                    imageUrl: 'https://bdaycnt.netlify.app/og-image.png',
+                    link: {
+                        mobileWebUrl: window.location.href,
+                        webUrl: window.location.href,
+                    },
+                },
+                buttons: [
+                    {
+                        title: '웹사이트에서 확인',
+                        link: {
+                            mobileWebUrl: window.location.href,
+                            webUrl: window.location.href,
+                        },
+                    },
+                ],
+            });
+        } else {
+            alert('카카오톡 공유를 위해 잠시 후 다시 시도해주세요.');
+        }
+    }
+
     return (
         <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-slate-50 to-indigo-100 py-8 px-4 relative font-sans">
             <h1 className="text-2xl font-bold text-slate-900 mb-2">생일 일수 계산기</h1>
@@ -181,6 +218,22 @@ export default function Home() {
                     </button>
                 </form>
                 <div className="w-full min-h-[2.5em]">{message}</div>
+                {/* 카카오톡 공유 버튼 */}
+                <button
+                    type="button"
+                    onClick={handleKakaoShare}
+                    className="flex items-center gap-2 mt-3 px-5 py-2 rounded-xl bg-yellow-300 hover:bg-yellow-400 text-brown-800 font-bold shadow border border-yellow-400 transition"
+                    style={{ fontFamily: 'inherit' }}
+                >
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <ellipse cx="12" cy="12" rx="12" ry="12" fill="#FEE500" />
+                        <path
+                            d="M12 6C8.13 6 5 8.686 5 12c0 1.13.47 2.19 1.29 3.07-.09.34-.32 1.23-.37 1.41 0 0-.07.23.13.32.2.09.32-.03.32-.03.42-.06 1.22-.4 1.43-.5.38.11.78.17 1.2.17 3.87 0 7-2.69 7-6s-3.13-6-7-6z"
+                            fill="#391B1B"
+                        />
+                    </svg>
+                    카카오톡으로 공유하기
+                </button>
             </div>
 
             {/* 카카오애드핏 시작 */}
@@ -195,6 +248,17 @@ export default function Home() {
             </div>
             <Script src="//t1.daumcdn.net/kas/static/ba.min.js" strategy="lazyOnload" async />
             {/* 카카오애드핏 끝 */}
+
+            {/* 카카오 SDK 스크립트 */}
+            <Script
+                src="https://t1.kakaocdn.net/kakao_js_sdk/2.5.0/kakao.min.js"
+                strategy="afterInteractive"
+                onLoad={() => {
+                    if (window.Kakao && !window.Kakao.isInitialized()) {
+                        window.Kakao.init('779c846fcfdeed6fffa205c1c52ac76c');
+                    }
+                }}
+            />
 
             <footer className="footer w-full flex justify-center items-center fixed left-0 bottom-0 z-10 bg-none pointer-events-none">
                 <a
