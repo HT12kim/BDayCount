@@ -255,7 +255,7 @@ export default function Home() {
                 strategy="afterInteractive"
                 onLoad={() => {
                     if (window.Kakao && !window.Kakao.isInitialized()) {
-                        window.Kakao.init('779c846fcfdeed6fffa205c1c52ac76c');
+                        window.Kakao.init('2a3c851176c99937d60d4f6f2084cd94');
                     }
                 }}
             />

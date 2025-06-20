@@ -24,6 +24,7 @@
     },
     "scripts": {
         "build": "next build",
-        "postbuild": "next-sitemap"
+        "postbuild": "next-sitemap",
+        "start": "next start"
     }
 }
