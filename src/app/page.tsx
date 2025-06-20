@@ -225,13 +225,6 @@ export default function Home() {
                     className="flex items-center gap-2 mt-3 px-5 py-2 rounded-xl bg-yellow-300 hover:bg-yellow-400 text-brown-800 font-bold shadow border border-yellow-400 transition"
                     style={{ fontFamily: 'inherit' }}
                 >
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <ellipse cx="12" cy="12" rx="12" ry="12" fill="#FEE500" />
-                        <path
-                            d="M12 6C8.13 6 5 8.686 5 12c0 1.13.47 2.19 1.29 3.07-.09.34-.32 1.23-.37 1.41 0 0-.07.23.13.32.2.09.32-.03.32-.03.42-.06 1.22-.4 1.43-.5.38.11.78.17 1.2.17 3.87 0 7-2.69 7-6s-3.13-6-7-6z"
-                            fill="#391B1B"
-                        />
-                    </svg>
                     카카오톡으로 공유하기
                 </button>
             </div>
